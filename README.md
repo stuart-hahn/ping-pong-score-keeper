@@ -1,1 +1,3 @@
-# ping-pong-score-keeper
+# Ping Pong Score Keeper
+
+A simple app to keep track of friendly ping pong games.
