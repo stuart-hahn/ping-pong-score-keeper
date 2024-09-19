@@ -1,59 +1,84 @@
-const scoreInput = document.querySelector("#number");
-scoreInput.value = 7;
+// Select DOM elements
+const winningScoreInput = document.querySelector("#winningScore");
+const playerOneScoreDisplay = document.querySelector("#playerOneScore");
+const playerTwoScoreDisplay = document.querySelector("#playerTwoScore");
+const playerOneButton = document.querySelector("#playerOneButton");
+const playerTwoButton = document.querySelector("#playerTwoButton");
+const resetButton = document.querySelector("#resetButton");
 
-const p1Score = document.querySelector("#p1Score");
-const p2Score = document.querySelector("#p2Score");
+// Initialize game state variables
+let playerOneScore = 0;
+let playerTwoScore = 0;
+let winningScore = 7; // Default playing to score
+let isGameOver = false;
 
-const p1Button = document.querySelector(".p1");
-const p2Button = document.querySelector(".p2");
-const resetButton = document.querySelector(".reset");
+// Set default winning score in input field
+winningScoreInput.value = winningScore;
 
-let p1 = 0;
-let p2 = 0;
+// Function to check if the game is over
+function checkGameOver() {
+  const totalScore = playerOneScore + playerTwoScore;
+  if (totalScore >= winningScore) {
+    isGameOver = true;
+    playerOneButton.disabled = true;
+    playerTwoButton.disabled = true;
 
-const winner = (p1, p2, target) => {
-  return p1 + p2 === parseInt(target);
-};
+    // Determine winner
+    if (playerOneScore > playerTwoScore) {
+      playerOneScoreDisplay.style.color = "green";
+      playerTwoScoreDisplay.style.color = "red";
+    } else if (playerTwoScore > playerOneScore) {
+      playerOneScoreDisplay.style.color = "red";
+      playerTwoScoreDisplay.style.color = "green";
+    } else {
+      // It's a tie
+      playerOneScoreDisplay.style.color = "orange";
+      playerTwoScoreDisplay.style.color = "orange";
+    }
+  }
+}
 
-const winnerColor = (p1, p2) => {
-  if (p1 > p2) {
-    p1Score.style.color = "green";
-    p2Score.style.color = "red";
+// Event listeners for player buttons
+playerOneButton.addEventListener("click", () => {
+  if (!isGameOver) {
+    playerOneScore++;
+    playerOneScoreDisplay.textContent = playerOneScore;
+    checkGameOver();
+  }
+});
+
+playerTwoButton.addEventListener("click", () => {
+  if (!isGameOver) {
+    playerTwoScore++;
+    playerTwoScoreDisplay.textContent = playerTwoScore;
+    checkGameOver();
+  }
+});
+
+// Event listener for winning score input change
+winningScoreInput.addEventListener("change", function () {
+  const newWinningScore = parseInt(this.value);
+  if (newWinningScore > 0) {
+    winningScore = newWinningScore;
+    resetGame();
   } else {
-    p1Score.style.color = "red";
-    p2Score.style.color = "green";
-  }
-};
-
-p1Button.addEventListener("click", (e) => {
-  p1 += 1;
-  p1Score.innerText = p1;
-  if (winner(p1, p2, scoreInput.value)) {
-    p1Button.disabled = true;
-    p2Button.disabled = true;
-    winnerColor(p1, p2);
+    alert("Please enter a positive number for the winning score.");
+    this.value = winningScore;
   }
 });
 
-p2Button.addEventListener("click", (e) => {
-  p2 += 1;
-  p2Score.innerText = p2;
-  if (winner(p1, p2, scoreInput.value)) {
-    p1Button.disabled = true;
-    p2Button.disabled = true;
-    winnerColor(p1, p2);
-  }
-});
+// Event listener for reset button
+resetButton.addEventListener("click", resetGame);
 
-resetButton.addEventListener("click", (e) => {
-  p1 = 0;
-  p2 = 0;
-  p1Score.innerText = p1;
-  p2Score.innerText = p2;
-
-  p1Button.disabled = false;
-  p2Button.disabled = false;
-
-  p2Score.style.color = "black";
-  p1Score.style.color = "black";
-});
+// Function to reset the game to its initial state
+function resetGame() {
+  playerOneScore = 0;
+  playerTwoScore = 0;
+  isGameOver = false;
+  playerOneScoreDisplay.textContent = 0;
+  playerTwoScoreDisplay.textContent = 0;
+  playerOneScoreDisplay.style.color = "black";
+  playerTwoScoreDisplay.style.color = "black";
+  playerOneButton.disabled = false;
+  playerTwoButton.disabled = false;
+}

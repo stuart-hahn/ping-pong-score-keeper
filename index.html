@@ -15,17 +15,20 @@
         />
         <h1>Ping Pong Score Keeper</h1>
         <div class="score">
-          <h2><span id="p1Score">0</span> to <span id="p2Score">0</span></h2>
+          <h2>
+            <span id="playerOneScore">0</span> to
+            <span id="playerTwoScore">0</span>
+          </h2>
           <p>Use the buttons below to keep score.</p>
           <p>
             <strong>Playing to: </strong
-            ><input type="number" name="number" id="number" />
+            ><input type="number" name="winningScore" id="winningScore" />
           </p>
         </div>
         <div class="controls">
-          <button class="p1">+1 Player One</button>
-          <button class="p2">+1 Player Two</button>
-          <button class="reset">Reset</button>
+          <button id="playerOneButton">+1 Player One</button>
+          <button id="playerTwoButton">+1 Player Two</button>
+          <button id="resetButton">Reset</button>
         </div>
       </div>
     </main>

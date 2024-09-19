@@ -1,32 +1,26 @@
-/*
-  1. Use a more-intuitive box-sizing model.
-*/
+/* Global Reset and Default Styles */
+
+/* 1. Use a more-intuitive box-sizing model */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/*
-  2. Remove default margin
-*/
+/* 2. Remove default margin */
 * {
   margin: 0;
 }
 
-/*
-  Typographic tweaks!
-  3. Add accessible line-height
-  4. Improve text rendering
-*/
+/* Typographic Tweaks */
+/* 3. Add accessible line-height */
+/* 4. Improve text rendering */
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
-/*
-  5. Improve media defaults
-*/
+/* 5. Improve media defaults */
 img,
 picture,
 video,
@@ -36,9 +30,7 @@ svg {
   max-width: 100%;
 }
 
-/*
-  6. Remove built-in form typography styles
-*/
+/* 6. Remove built-in form typography styles */
 input,
 button,
 textarea,
@@ -46,9 +38,7 @@ select {
   font: inherit;
 }
 
-/*
-  7. Avoid text overflows
-*/
+/* 7. Avoid text overflows */
 p,
 h1,
 h2,
@@ -59,13 +49,13 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/*
-  8. Create a root stacking context
-*/
+/* 8. Create a root stacking context */
 #root,
 #__next {
   isolation: isolate;
 }
+
+/* Specific Styles */
 
 img {
   border-radius: 30px 30px 0 0;
@@ -102,22 +92,17 @@ h1,
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
-}
-
-.p1,
-.p2,
-.reset {
   flex: 1 1 200px;
 }
 
-.p1 {
+#playerOneButton {
   background-color: rgb(20, 230, 125);
 }
 
-.p2 {
+#playerTwoButton {
   background-color: rgb(47, 73, 221);
 }
 
-.reset {
+#resetButton {
   background-color: rgb(201, 49, 49);
 }
